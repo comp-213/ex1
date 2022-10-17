@@ -10,13 +10,11 @@ namespace ex1
 {
     internal class Toppings
     {
-      public Toppings(string name, double price)
+      public Toppings(string name)
         {
             Name = name;
-            Price = price;
         }
 
         public string Name { get; set; }
-        public double Price { get; set; }
     }
 }

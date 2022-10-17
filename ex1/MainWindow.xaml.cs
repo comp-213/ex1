@@ -23,21 +23,24 @@ namespace ex1
     {
         public double displayPrice = 0;
         public const double TOPPING_PRICE = 0.5;
+        List<Size> pizzaSizes = new List<Size>();
+        List<Toppings> toppings = new List<Toppings>();
         public MainWindow()
         {
             InitializeComponent();
-            InitializeSizes();
-            InitializeToppings();
-        }
-        /** Intializes radio buttons for sizes. Stores parameters in the list then for each parameter creates a radio button
-         */
-        private void InitializeSizes()
-        {
-            List<Size> pizzaSizes = new List<Size>();
             pizzaSizes.Add(new Size("Small", 5.0));
             pizzaSizes.Add(new Size("Medium", 6.25));
             pizzaSizes.Add(new Size("Large", 7.75));
-
+            InitializeSizes();
+            toppings.Add(new Toppings("Onion"));
+            toppings.Add(new Toppings("Pepper"));
+            toppings.Add(new Toppings("Tomato"));
+            InitializeToppings();
+        }
+        /** For each parameter in the List<Size> creates a Radio Button
+         */
+        private void InitializeSizes()
+        {
             foreach (Size entry in pizzaSizes)
             {
                 RadioButton sizeRadioButton = new RadioButton();
@@ -49,15 +52,10 @@ namespace ex1
                 sizePanel.Children.Add(sizeRadioButton);
             }
         }
-        /** Intializes check boxes for toppings. Stores parameters in the list then for each parameter creates a Check Box 
+        /**For each parameter in the List<Toppings> creates a Check Box 
         */
         private void InitializeToppings()
         {
-            List<Toppings> toppings = new List<Toppings>();
-            toppings.Add(new Toppings("Onion", TOPPING_PRICE));
-            toppings.Add(new Toppings("Pepper", TOPPING_PRICE));
-            toppings.Add(new Toppings("Tomato", TOPPING_PRICE));
-
             foreach (Toppings entry in toppings)
             {
                 CheckBox toppingCheckBox = new CheckBox();
@@ -73,18 +71,15 @@ namespace ex1
         //when Check box is unchecked reduces the value of the price
         private void toppingCheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            CheckBox checkBox = sender as CheckBox;
-            Toppings toppings = checkBox.Tag as Toppings;
-            contentUpdate(-toppings.Price);
+            contentUpdate(-TOPPING_PRICE);
         }
 
         //when check box is checked increases the value of the price
         private void toppingCheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            CheckBox checkBox = sender as CheckBox;
-            Toppings toppings = checkBox.Tag as Toppings;
-            contentUpdate(+toppings.Price);
+            contentUpdate(+TOPPING_PRICE);
         }
+
         //when radio button is unchecked reduces the value of the price
         private void sizeRadioButton_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -92,6 +87,7 @@ namespace ex1
             Size size = radioButton.Tag as Size;
             contentUpdate(-size.Price);
         }
+
         //when radio button is checked increases the value of the price
         private void sizeRadioButton_Checked(object sender, RoutedEventArgs e)
         {
