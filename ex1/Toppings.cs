@@ -10,15 +10,13 @@ namespace ex1
 {
     internal class Toppings
     {
-        public const double toppingsPrice= 0.5;
-        public Toppings(){}
-
-        public UIElement toppingsName(string name)
+      public Toppings(string name, double price)
         {
-            CheckBox myCheckBox = new CheckBox();
-            myCheckBox.Content = name;
-            return myCheckBox;
+            Name = name;
+            Price = price;
         }
 
+        public string Name { get; set; }
+        public double Price { get; set; }
     }
 }

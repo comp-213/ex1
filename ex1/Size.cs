@@ -10,18 +10,16 @@ namespace ex1
 {
     internal class Size
     {
-        RadioButton myRadioButton = new RadioButton();
-        public double sizePrice = 0;
-        public Size()
+
+        public Size(string sizing, double price)
         {
-            
+            Sizing = sizing;
+            Price = price;
         }
-        public UIElement sizeNamePrice(string sizing, double price)
-        {
-            sizePrice = price;
-            myRadioButton.Content = sizing;
-            return myRadioButton;
-        }
+
+
+        public string Sizing { get; set; }
+        public double Price { get; set; }
 
 
     } 
